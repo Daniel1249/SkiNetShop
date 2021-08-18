@@ -16,6 +16,7 @@ namespace Core.Specifications
         {
            
         }
+        //just an added comment
 
         public Expression<Func<T, bool>> Criteria { get;}
 
