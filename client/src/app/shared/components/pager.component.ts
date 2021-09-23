@@ -14,6 +14,7 @@ export class PagerComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  // tslint:disable-next-line: typedef
   onPagerChange(event: any) {
     this.pageChanged.emit(event.page);
   }
