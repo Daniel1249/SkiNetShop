@@ -3,3 +3,4 @@ bin
 *.db
 skinet.db-shm
 skinet.db-wal
+*.rdb
