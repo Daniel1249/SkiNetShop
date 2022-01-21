@@ -3,6 +3,7 @@ using API.Helpers;
 using API.Middleware;
 using Infrastructure.Data;
 using Infrastructure.Identity;
+using Microsoft.AspNetCore.Authentication.Certificate;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -20,10 +21,12 @@ namespace API
             _configuration = configuration;
         }
 
+        
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddControllers();
             services.AddAutoMapper(typeof(MappingProfiles));
             services.AddDbContext<StoreContext>(x =>
@@ -43,6 +46,9 @@ namespace API
                 return ConnectionMultiplexer.Connect(configuration);
 
             });
+
+             //services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme)
+            //.AddCertificate();
 
             services.AddApplicationServices();
             services.AddIdentityService(_configuration);
@@ -70,6 +76,7 @@ namespace API
             app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
             app.UseHttpsRedirection();
+            //app.UseAuthentication();
 
             app.UseRouting();
             app.UseStaticFiles();
